@@ -2133,7 +2133,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 
 .layout-tv .detailPageSecondaryContainer.padded-left,
 .layout-desktop .detailPageSecondaryContainer.padded-left {
-    padding-left: 28.45vw !important;
+    padding-left: max(env(safe-area-inset-left), 32.45vw);
 }
 
 
@@ -2301,7 +2301,9 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
         padding-left: 28.45vw !important;
     }
 
-    .detailPagePrimaryContent {
+    .detailPagePrimaryContent,
+    .layout-tv .detailPageSecondaryContainer.padded-left,
+    .layout-desktop .detailPageSecondaryContainer.padded-left {
         padding-left: 28.45vw !important;
     }
 
@@ -2319,7 +2321,9 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
         padding-left: 23.45vw !important;
     }
 
-    .detailPagePrimaryContent {
+    .detailPagePrimaryContent,
+    .layout-tv .detailPageSecondaryContainer.padded-left,
+    .layout-desktop .detailPageSecondaryContainer.padded-left {
         padding-left: 23.45vw !important;
     }
 
