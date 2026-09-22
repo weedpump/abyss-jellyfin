@@ -55,7 +55,9 @@ test('spotlight avoids known paint and accessibility regressions', () => {
 });
 
 test('modern TV focus styling is scoped to the native TV marker', () => {
-  assert.match(themeCss, /html\.native-tv-modern\.layout-desktop[\s\S]*\.native-tv-focused/);
+  assert.match(themeCss, /html\.native-tv-modern \.native-tv-focused/);
+  assert.doesNotMatch(themeCss, /html\.native-tv-modern\.layout-desktop[\s\S]*\.native-tv-focused/);
+  assert.doesNotMatch(themeCss, /\.card\.native-tv-focused\s*\{[^}]*outline:\s*none/);
   assert.match(themeCss, /--abyss-tv-focus-ring/);
 });
 
