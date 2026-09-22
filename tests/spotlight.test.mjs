@@ -59,6 +59,10 @@ test('modern TV focus styling is scoped to the native TV marker', () => {
   assert.doesNotMatch(themeCss, /html\.native-tv-modern\.layout-desktop[\s\S]*\.native-tv-focused/);
   assert.doesNotMatch(themeCss, /\.card\.native-tv-focused\s*\{[^}]*outline:\s*none/);
   assert.match(themeCss, /--abyss-tv-focus-ring/);
+  assert.match(themeCss, /html\.native-tv-modern #itemDetailPage[\s\S]*user-select:\s*none/);
+  assert.match(themeCss, /html\.native-tv-modern #itemDetailPage \.listItem\.native-tv-focused/);
+  assert.match(themeCss, /html\.native-tv-modern #itemDetailPage \.padded-top-focusscale/);
+  assert.match(themeCss, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.emby-button\.detailButton\.native-tv-focused[\s\S]*transform:\s*none\s*!important/);
 });
 
 test('spotlight cooperates with native spatial navigation', () => {

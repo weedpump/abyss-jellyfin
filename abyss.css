@@ -445,9 +445,40 @@ html.native-tv-modern .featurediframe.native-tv-focused {
     transform: none;
 }
 
+html.native-tv-modern #itemDetailPage {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html.native-tv-modern #itemDetailPage .listItem.native-tv-focused {
+    background-color: rgba(var(--abyss-accent), 0.16) !important;
+    border-radius: var(--abyss-radius);
+    transform: scale(1.01);
+}
+
+html.native-tv-modern #itemDetailPage .emby-button.detailButton.native-tv-focused,
+html.native-tv-modern #itemDetailPage button.detailButton.native-tv-focused {
+    margin: 0 !important;
+    padding: 0.7em 0.8em !important;
+    transform: scale(1.045) !important;
+    background-color: rgba(var(--abyss-accent), 0.2) !important;
+}
+
+html.native-tv-modern #itemDetailPage .padded-top-focusscale {
+    padding-top: 1.5em;
+    margin-top: -1.5em;
+}
+
+html.native-tv-modern #itemDetailPage .padded-bottom-focusscale {
+    padding-bottom: 1.5em;
+    margin-bottom: -1.5em;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html.native-tv-modern .native-tv-focused,
-    html.native-tv-modern .card.native-tv-focused .cardBox {
+    html.native-tv-modern .card.native-tv-focused .cardBox,
+    html.native-tv-modern #itemDetailPage .emby-button.detailButton.native-tv-focused,
+    html.native-tv-modern #itemDetailPage button.detailButton.native-tv-focused {
         transition: none !important;
         transform: none !important;
     }
