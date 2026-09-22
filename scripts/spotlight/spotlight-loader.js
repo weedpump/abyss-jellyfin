@@ -236,6 +236,7 @@
 
   window.addEventListener("message", function (event) {
     if (!currentIframe || event.source !== currentIframe.contentWindow) return;
+    if (event.origin !== window.location.origin) return;
     if (!event.data || event.data.type !== "abyss-spotlight") return;
     if (event.data.action === "leave") {
       spotlightFocused = false;

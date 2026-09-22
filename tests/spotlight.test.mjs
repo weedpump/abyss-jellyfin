@@ -62,5 +62,7 @@ test('modern TV focus styling is scoped to the native TV marker', () => {
 test('spotlight cooperates with native spatial navigation', () => {
   assert.match(loader, /native-tv-focus/);
   assert.match(loader, /NativeTvNavigation/);
+  assert.match(loader, /event\.origin !== window\.location\.origin/);
   assert.match(script, /native-tv-modern/);
+  assert.match(script, /body\.classList\.contains\('layout-tv'\)/);
 });
