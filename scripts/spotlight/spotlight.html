@@ -87,7 +87,8 @@
 
 			function isTvLayout() {
 				try {
-					return window.top.document.body.classList.contains('layout-tv');
+					const root = window.top.document.documentElement;
+					return root.classList.contains('layout-tv') || root.classList.contains('native-tv-modern');
 				} catch {
 					return false;
 				}

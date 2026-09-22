@@ -200,6 +200,7 @@
   }
 
   document.addEventListener("keydown", function (event) {
+    if (window.NativeTvNavigation && window.NativeTvNavigation.isInstalled()) return;
     if (spotlightFocused) return; // events go straight to the iframe's own document while it holds focus
     if (!currentIframe || !currentIframe.isConnected) return;
     if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
@@ -238,6 +239,7 @@
     if (!event.data || event.data.type !== "abyss-spotlight") return;
     if (event.data.action === "leave") {
       spotlightFocused = false;
+      if (window.NativeTvNavigation && window.NativeTvNavigation.isInstalled()) return;
       safe(function () {
         focusNearestOutside(currentIframe, event.data.direction || "down");
       });
@@ -358,6 +360,8 @@
         iframe.setAttribute("tabindex", "0");
         iframe.src = spotlightUrl;
         iframe.title = "Abyss Spotlight";
+        iframe.setAttribute("data-native-tv-focus-target", "spotlight");
+        iframe.addEventListener("native-tv-focus", function () { enterSpotlight(iframe); });
         iframe.addEventListener("blur", function () { spotlightFocused = false; });
         var sections = homeTab.querySelector ? homeTab.querySelector(".sections") : null;
         homeTab.insertBefore(iframe, sections || homeTab.firstChild);

@@ -56,6 +56,7 @@
     /* Rendering controls used by the optional Lite override */
     --abyss-backdrop-blur: 23px;
     --abyss-glass-blur: 15px;
+    --abyss-tv-focus-ring: rgba(var(--abyss-accent), 0.95);
 }
 
 /* Jellyfin 12 exposes the built-in theme palette as CSS variables. Keep the
@@ -401,6 +402,62 @@ input[type="radio"]:checked {
 }
 
 /* Jellyfin 12 modern app shell (React / MUI) [BETA] */
+
+/* Native Android TV navigation for the Jellyfin 12 modern shell */
+html.native-tv-modern.layout-desktop .native-tv-focused {
+    outline: 3px solid var(--abyss-tv-focus-ring) !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.72), 0 0 20px rgba(var(--abyss-accent), 0.45) !important;
+    position: relative;
+    z-index: 3;
+}
+
+html.native-tv-modern.layout-desktop :is(
+    button,
+    a[href],
+    [role="button"],
+    [role="menuitem"],
+    [role="option"],
+    [role="tab"],
+    .MuiButtonBase-root
+).native-tv-focused {
+    background-color: rgba(var(--abyss-accent), 0.2) !important;
+    transform: scale(1.045);
+    transition: transform 140ms var(--abyss-ease-snappy), box-shadow 140ms var(--abyss-ease-snappy), background-color 140ms var(--abyss-ease-snappy);
+}
+
+html.native-tv-modern.layout-desktop .card.native-tv-focused {
+    outline: none !important;
+    box-shadow: none !important;
+    transform: none;
+}
+
+html.native-tv-modern.layout-desktop .card.native-tv-focused .cardBox.visualCardBox,
+html.native-tv-modern.layout-desktop .card.native-tv-focused .cardBox:not(.visualCardBox) .cardScalable {
+    border: 0.3em solid var(--abyss-tv-focus-ring) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 0 20px rgba(var(--abyss-accent), 0.45) !important;
+    transform: scale(1.045);
+    transition: transform 140ms var(--abyss-ease-snappy), box-shadow 140ms var(--abyss-ease-snappy);
+}
+
+html.native-tv-modern.layout-desktop .MuiTab-root.native-tv-focused {
+    color: rgb(var(--abyss-accent)) !important;
+}
+
+html.native-tv-modern.layout-desktop .featurediframe.native-tv-focused {
+    outline: 4px solid var(--abyss-tv-focus-ring) !important;
+    outline-offset: -4px !important;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.native-tv-modern.layout-desktop .native-tv-focused,
+    html.native-tv-modern.layout-desktop .card.native-tv-focused .cardBox {
+        transition: none !important;
+        transform: none !important;
+    }
+}
 
 .alphaPicker-fixed-right {
     align-self: center; 

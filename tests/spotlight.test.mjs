@@ -6,6 +6,7 @@ import vm from 'node:vm';
 const html = await readFile(new URL('../scripts/spotlight/spotlight.html', import.meta.url), 'utf8');
 const css = await readFile(new URL('../scripts/spotlight/spotlight.css', import.meta.url), 'utf8');
 const loader = await readFile(new URL('../scripts/spotlight/spotlight-loader.js', import.meta.url), 'utf8');
+const themeCss = await readFile(new URL('../abyss.css', import.meta.url), 'utf8');
 const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 
 test('spotlight inline script parses', () => {
@@ -51,4 +52,15 @@ test('spotlight avoids known paint and accessibility regressions', () => {
   assert.doesNotMatch(css, /--webkit-backdrop-filter/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(html, /id="clickzone"[^>]*aria-label=/);
+});
+
+test('modern TV focus styling is scoped to the native TV marker', () => {
+  assert.match(themeCss, /html\.native-tv-modern\.layout-desktop[\s\S]*\.native-tv-focused/);
+  assert.match(themeCss, /--abyss-tv-focus-ring/);
+});
+
+test('spotlight cooperates with native spatial navigation', () => {
+  assert.match(loader, /native-tv-focus/);
+  assert.match(loader, /NativeTvNavigation/);
+  assert.match(script, /native-tv-modern/);
 });
